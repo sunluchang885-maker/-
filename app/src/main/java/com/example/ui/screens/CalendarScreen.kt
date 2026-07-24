@@ -30,6 +30,7 @@ import androidx.compose.material.icons.automirrored.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.DeleteOutline
 import androidx.compose.material.icons.filled.EditNote
 import androidx.compose.material.icons.filled.Today
 import androidx.compose.material3.Button
@@ -118,6 +119,9 @@ fun CalendarScreen(
             },
             onMarkFailed = {
                 viewModel.toggleCheckIn(uiState.selectedDate, 0, noteText)
+            },
+            onClearRecord = {
+                viewModel.deleteCheckIn(uiState.selectedDate)
             }
         )
 
@@ -440,7 +444,8 @@ fun SelectedDateActionCard(
     onNoteTextChange: (String) -> Unit,
     onToggleNoteEditing: () -> Unit,
     onCheckInSuccess: () -> Unit,
-    onMarkFailed: () -> Unit
+    onMarkFailed: () -> Unit,
+    onClearRecord: () -> Unit
 ) {
     val displayDate = selectedDate.format(DateTimeFormatter.ofPattern("yyyy年M月d日 EEEE"))
     val isDark = MaterialTheme.colorScheme.background.red < 0.2f
@@ -550,7 +555,7 @@ fun SelectedDateActionCard(
                         modifier = Modifier.size(18.dp)
                     )
                     Spacer(modifier = Modifier.width(6.dp))
-                    Text(text = if (status == 1) "已打卡 (+10分)" else "打卡成功 (+10分)")
+                    Text(text = if (status == 1) "已打卡" else "打卡成功")
                 }
 
                 OutlinedButton(
@@ -570,7 +575,29 @@ fun SelectedDateActionCard(
                         modifier = Modifier.size(18.dp)
                     )
                     Spacer(modifier = Modifier.width(6.dp))
-                    Text(text = if (status == 0) "已记未打卡 (-15分)" else "设为未打卡 (-15分)")
+                    Text(text = if (status == 0) "已记未打卡" else "设为未打卡")
+                }
+            }
+
+            if (status != -1) {
+                androidx.compose.material3.TextButton(
+                    onClick = onClearRecord,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .testTag("btn_clear_record")
+                ) {
+                    Icon(
+                        imageVector = Icons.Filled.DeleteOutline,
+                        contentDescription = null,
+                        modifier = Modifier.size(16.dp),
+                        tint = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                    Spacer(modifier = Modifier.width(4.dp))
+                    Text(
+                        text = "清除此日打卡记录 (恢复未选择)",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
                 }
             }
         }

@@ -108,7 +108,7 @@ fun RewardsScreen(
             }
 
             // Reward Items
-            items(uiState.rewards, key = { it.id }) { reward ->
+            items(uiState.rewards, key = { "reward_${it.id}" }) { reward ->
                 RewardItemCard(
                     reward = reward,
                     userPoints = uiState.totalPoints,
@@ -153,7 +153,7 @@ fun RewardsScreen(
                     }
                 }
             } else {
-                items(uiState.redemptionLogs, key = { it.id }) { log ->
+                items(uiState.redemptionLogs, key = { "log_${it.id}" }) { log ->
                     RedemptionLogItem(log = log)
                 }
             }

@@ -139,6 +139,14 @@ class CheckInViewModel(application: Application) : AndroidViewModel(application)
         }
     }
 
+    fun deleteCheckIn(date: LocalDate) {
+        val dateStr = date.format(dateFormatter)
+        viewModelScope.launch {
+            repository.deleteCheckIn(dateStr)
+            _userMessage.value = "${date.format(DateTimeFormatter.ofPattern("M月d日"))} 已清除记录，恢复初始状态"
+        }
+    }
+
     fun redeemReward(reward: Reward) {
         viewModelScope.launch {
             val result = repository.redeemReward(reward, uiState.value.totalPoints)
