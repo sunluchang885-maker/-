@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Calendar Body -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M30,34 h48 a6,6 0 0 1 6,6 v38 a6,6 0 0 1 -6,6 h-48 a6,6 0 0 1 -6,-6 v-38 a6,6 0 0 1 6,-6 z"/>
+    <!-- Calendar Header -->
+    <path
+        android:fillColor="#4CAF50"
+        android:pathData="M30,34 h48 a6,6 0 0 1 6,6 v12 h-60 v-12 a6,6 0 0 1 6,-6 z"/>
+    <!-- Calendar Binder Rings -->
+    <path
+        android:fillColor="#1B382B"
+        android:pathData="M38,28 h4 v10 h-4 z M66,28 h4 v10 h-4 z"/>
+    <!-- Check Mark Badge -->
+    <path
+        android:fillColor="#2E7D32"
+        android:pathData="M48,64 l-7,-7 l3.5,-3.5 l3.5,3.5 l10.5,-10.5 l3.5,3.5 z"/>
+    <!-- Star Points Badge -->
+    <path
+        android:fillColor="#FFC107"
+        android:pathData="M70,28 l2,4.5 l5,0.5 l-3.5,3 L74.5,41 L70,38.5 L65.5,41 L66.5,36 L63,33 L68,32.5 z"/>
+</vector>
